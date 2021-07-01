@@ -5,6 +5,8 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "express": "*",
+    "body-parser": "*",
     "@types/bson": {
       "version": "4.0.3",
       "resolved": "https://registry.npmjs.org/@types/bson/-/bson-4.0.3.tgz",
