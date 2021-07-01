@@ -1,0 +1,19 @@
+<% layout('layout/template') %> 
+<!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam ipsum eveniet sapiente quia iure maiores nulla tempore explicabo excepturi esse aliquam corporis iusto mollitia eaque culpa, amet modi accusamus ex?</p> -->
+<div class="container">
+  <div class="row">
+    <% for( let product of products){%>
+      <div class="col col-l-3 mb-3">                
+        <div class="card " style="width: 20rem;">
+          <img src="<%= product.imageUrl  %> " class="card-img-top" style="max-width: 20rem; max-height: 300px;" alt="...">
+          <div class="card-body">
+            <h3 class="card-title"><%= product.name %></h3>
+            <h5>price: $<%= product.price %></h5>
+            <p class="card-text"><%= product.description %> </p>
+            <a class="btn btn-primary" href="/add/<%= product.id %>" role="button">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+      <% } %> 
+  </div>
+</div>

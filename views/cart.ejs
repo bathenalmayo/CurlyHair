@@ -1,0 +1,59 @@
+<% layout('layout/template') %> 
+
+<% if (!cart) { %>
+    <h1 id="cartHeadline"> Empty Cart!</h1>
+<% }else{ %>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let total = 0;  %>
+            <% let sub = 0;  %>
+            <% cart.forEach(product => { %>  
+                
+                <%  sub =  product.qty * product.price;  %>
+                <%  total = total + sub ;  %>  
+            <tr>
+                <td><img src="<%= product.imageUrl %>" style="height: 100px; width: 100px;" alt=""></td>
+                <td><%= product.name %> </td>
+                <td>$ <%= product.price %> </td>  
+                <td data-bs-container="body" data-bs-toggle="popover"data-bs-trigger="focus" data-bs-placement="right" data-bs-content="Right popover">
+                    <%= product.qty %></td> 
+                     <% if(product.qty > product.stock){ %>
+                        <span> only <%= product.stock %> left! </span>
+                <% } %> 
+                <td>
+                   
+                    <a id="add" href="/update/<%= product._id %>?action=add">+</a>&nbsp;     
+                    <a id="clear" href="/update/<%= product._id %>?action=clear">claer</a>&nbsp;
+                    <a id="remove" href="/update/<%= product._id %>?action=remove">-</a>&nbsp;
+                   
+                </td>
+                <td>$ <%= sub %> </td>
+            </tr>
+            <% }); %>
+            <tr>
+                <td colspan="6" align="right">Total: <%= total %></td>
+            </tr>
+        </tbody>
+        <tfoot>
+           
+            <tr>
+                <td colspan="5" align="right">
+                    <a  class="btn btn-danger" href="/cart/clear">Clear Cart</a>
+                </td>
+                <td colspan="5" align="right">
+                    <a  class="btn btn-primary" id="checkoutBtn" role="button" href="/checkout/<%= currentUser._id %>" >Buy Now</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+<% } %>

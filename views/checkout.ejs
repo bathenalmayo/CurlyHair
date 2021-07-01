@@ -1,0 +1,55 @@
+<% layout('layout/template') %> 
+
+
+<h1>Your purchase includes: </h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% let total = 0;  %>
+        <% let sub = 0;  %>
+        <% cart.forEach(product => { %>  
+            
+            <%  sub =  product.qty * product.price;  %>
+            <%  total = total + sub ;  %>  
+        <tr>
+            <td><img src="<%= product.imageUrl %>" style="height: 100px; width: 100px;" alt=""></td>
+            <td><%= product.name %> </td>
+            <td>$ <%= product.price %> </td>  
+            <td> <%= product.qty %></td> 
+            <td>$ <%= sub %> </td>
+        </tr>
+        <% }); %>
+        
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6" align="right">Total: <%= total %></td>
+        </tr> 
+    </tfoot>
+</table>
+
+
+<!-- Modal -->
+<div class="modal custom fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel"> YEY, <%= currentUser.username %>!!</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>You made it to the checkout page.<br>
+                Thanks for your purchase! </p>
+        </div>
+      </div>
+    </div>
+  </div>

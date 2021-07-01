@@ -1,0 +1,25 @@
+.modal-content {
+  background-color: rgba(130, 169, 71, 0.829);
+}
+.modal-body {
+  text-align: center;
+}
+#home {
+  font-family: "Dancing Script", cursive;
+}
+#cartHeadline {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  text-align: center;
+}
+#blogBody {
+  font-family: "Dancing Script", cursive;
+  font-family: "Viaoda Libre", cursive;
+  background-color: #faedcd;
+}
+.left-container {
+  background-color: #ffcdb2;
+}
+.right-container {
+  background-color: #ffb4a2;
+}
