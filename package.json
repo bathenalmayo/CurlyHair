@@ -1,8 +1,11 @@
-{"name":"converted",
+{"name":"my-project",
   "version":"1.0.0",
   "description":"",
-  "author":"",
+  "author":"bathenalmayo",
   "license":"ISC",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies":{
     "connect-flash":"0.1.1",
     "connect-mongo":"4.4.1",
