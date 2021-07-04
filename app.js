@@ -82,6 +82,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        secure: false,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7, //expire date to a week from this date
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
