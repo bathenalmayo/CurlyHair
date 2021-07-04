@@ -1,5 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
+
 }
 //console.log(process.env); { path: '.env' }
 const express = require('express');
@@ -19,8 +20,6 @@ const userRoute = require('./routes/user');
 const storeRoute = require('./routes/store');
 const MongoDBStore = require('connect-mongo');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/curlyHair';
-
-//'mongodb://localhost:27017/curlyHair'
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,

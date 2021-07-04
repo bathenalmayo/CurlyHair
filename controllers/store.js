@@ -111,9 +111,10 @@ module.exports.checkout =  async(req,res) =>{
 
         selectedProduct = await HairProduct.findById(cart[i]._id);
         user.purchase.push(selectedProduct);
-        for(let i = 0; i < selectedProduct.buyers.length; i++){
-            if(user._id == selectedProduct.buyers[i]){
-                selectedProduct.buyers.splice(i,1);            
+        console.log("inside chackout");
+        for(let j = 0; j < selectedProduct.buyers.length; j++){
+            if(user._id == selectedProduct.buyers[j]){
+                selectedProduct.buyers.splice(j,1);        
              }else{
                 selectedProduct.buyers.push(user);
              }

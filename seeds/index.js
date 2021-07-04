@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const HairProduct = require('../models/hairProduct');
 const products = require('./seedProduct');
+const { dbUrl } = require('../app');
 
 
-mongoose.connect('mongodb://localhost:27017/curlyHair', {
+//'mongodb://localhost:27017/curlyHair'
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex:true,
     useUnifiedTopology: true
@@ -27,6 +29,7 @@ seedDB();
 */
 const seedDB = async () => {
     await HairProduct.deleteMany({});
+    //await User.purchase.deleteMany({});
     for (let i = 0; i < 12; i++) {
         const price = Math.floor(Math.random()* 20) + 10;
         const stock = Math.floor(Math.random()* 30) + 5;
@@ -37,7 +40,7 @@ const seedDB = async () => {
             imageUrl: `${products[i].url}`,
             qty: 1,
             stock,
-            buyer:'60b4f6f49dd0cf291c8a49ad' // id of "dog" user
+            buyers:'60b4f6f49dd0cf291c8a49ad' // id of "dog" user
         })
         await product.save();
     }
