@@ -5,7 +5,7 @@ const { dbUrl } = require('../app');
 
 
 //'mongodb://localhost:27017/curlyHair'
-mongoose.connect(dbUrl, {
+mongoose.connect('mongodb://localhost:27017/curlyHair', {
     useNewUrlParser: true,
     useCreateIndex:true,
     useUnifiedTopology: true
