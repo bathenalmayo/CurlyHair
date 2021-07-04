@@ -1,4 +1,4 @@
-const { select } = require('async');
+//const { select } = require('async');
 const HairProduct = require('../models/hairProduct');
 const User = require('../models/user');
 
@@ -35,7 +35,7 @@ module.exports.addToCart = async(req,res)=>{
 
 }
 
-module.exports.updateCart = async (req,res) =>{
+module.exports.updateCart = async(req,res) =>{
     const { id } = req.params;
     const selectedProduct = await HairProduct.findById(id);
     const cart = req.session.cart;
@@ -77,7 +77,7 @@ module.exports.updateCart = async (req,res) =>{
 
 }
 
-module.exports.renderCart = async (req,res) =>{
+module.exports.renderCart = async(req,res) =>{
     const cart = req.session.cart;
     if(cart && cart.length == 0 ){
         delete req.session.cart;

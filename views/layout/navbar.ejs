@@ -11,7 +11,7 @@
           <a class="nav-link" href="/blog">Blog</a>
           <a class="nav-link" role="button" href="/cart">
               <i class="fa fa-shopping-cart" style="font-size:24px"></i>
-              ( <%= if (!cart) { %>
+              ( <% if (!cart) { %>
                0
             <% }else{ %>
               <%= cart.length %> 
