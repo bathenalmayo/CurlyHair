@@ -86,7 +86,7 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
-
+app.set('trust proxy', 1);
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -98,7 +98,6 @@ passport.deserializeUser(User.deserializeUser());
 
 //A Middelware for flashing the user everytime something new accures
 app.use((req, res, next) => {
-
     res.locals.currentUser = req.user;
     res.locals.cart = req.session.cart;
     res.locals.qty = req.session.qty;
