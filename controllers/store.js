@@ -73,7 +73,7 @@ module.exports.updateCart = async (req,res) =>{
     
     }
     req.flash('success','Cart Updated!');
-    res.redirect('/cart');
+    res.redirect('/cart',{cart});
 
 }
 
@@ -83,7 +83,7 @@ module.exports.renderCart = async (req,res) =>{
         delete req.session.cart;
         res.redirect('/cart');
     }else{
-        res.render('cart');
+        res.render('cart',{cart});
     }
 }
 
