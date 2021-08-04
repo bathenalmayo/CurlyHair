@@ -2,6 +2,7 @@
 const HairProduct = require('../models/hairProduct');
 const User = require('../models/user');
 
+
 module.exports.addToCart = async(req,res)=>{
     const { id } = req.params;
     const selectedProduct = await HairProduct.findById(id);
@@ -33,6 +34,16 @@ module.exports.addToCart = async(req,res)=>{
         req.flash('success','Product Added To Cart!');
         res.redirect('/hairProducts');
 
+}
+
+module.exports.renderCart = async(req,res) =>{
+    const cart = req.session.cart;
+    if(cart && cart.length == 0 ){
+        delete req.session.cart;
+        res.redirect('/cart');
+    }else{
+        res.render('cart',{cart});
+    }
 }
 
 module.exports.updateCart = async(req,res) =>{
@@ -72,18 +83,9 @@ module.exports.updateCart = async(req,res) =>{
         }
     }
     req.flash('success','Cart Updated!');
-    res.redirect({cart},'/cart');
+    res.redirect('/cart',{cart});
 }
 
-module.exports.renderCart = async(req,res) =>{
-    const cart = req.session.cart;
-    if(cart && cart.length == 0 ){
-        delete req.session.cart;
-        res.redirect('/cart');
-    }else{
-        res.render('cart',{cart});
-    }
-}
 
 module.exports.clearCart =  async(req,res) =>{
     const products= await HairProduct.find({});
