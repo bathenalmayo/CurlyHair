@@ -70,11 +70,9 @@ module.exports.updateCart = async(req,res) =>{
             }
             break;
         }
-    
     }
     req.flash('success','Cart Updated!');
-    res.redirect('/cart',{cart});
-
+    res.redirect({cart},'/cart');
 }
 
 module.exports.renderCart = async(req,res) =>{
