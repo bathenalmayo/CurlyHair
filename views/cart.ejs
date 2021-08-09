@@ -25,25 +25,24 @@
                 <td><img src="<%= product.imageUrl %>" style="height: 100px; width: 100px;" alt=""></td>
                 <td><%= product.name %> </td>
                 <td>$ <%= product.price %> </td>  
-                <td data-bs-container="body" data-bs-toggle="popover"data-bs-trigger="focus" data-bs-placement="right" data-bs-content="Right popover">
-                    <%= product.qty %></td> 
-                     <% if(product.qty > product.stock){ %>
-                        <span style="color:red" > only <%= product.stock %> left! </span>
+                <td><%= product.qty %></td> 
+                <% if(product.qty > product.stock){ %>
+                        <!-- <span style="color:red" > only <%= product.stock %> left! </span> -->
                         <td>
                    
-                            <a id="add" href="/update/<%= product._id %>?action=add" disabled>+</a>&nbsp;     
+                            <a id="add" href="/update/<%= product._id %>?action=add" style="color: gray;" disabled>+</a>&nbsp;     
                             <a id="clear" href="/update/<%= product._id %>?action=clear">clear</a>&nbsp;
                             <a id="remove" href="/update/<%= product._id %>?action=remove">-</a>&nbsp;
                            
                         </td>
                 <% } else{ %> 
-                <td>
-                   
-                    <a id="add" href="/update/<%= product._id %>?action=add">+</a>&nbsp;     
-                    <a id="clear" href="/update/<%= product._id %>?action=clear">clear</a>&nbsp;
-                    <a id="remove" href="/update/<%= product._id %>?action=remove">-</a>&nbsp;
-                   
-                </td>
+                        <td>
+                        
+                            <a id="add" href="/update/<%= product._id %>?action=add">+</a>&nbsp;     
+                            <a id="clear" href="/update/<%= product._id %>?action=clear">clear</a>&nbsp;
+                            <a id="remove" href="/update/<%= product._id %>?action=remove">-</a>&nbsp;
+                        
+                        </td>
                 <% } %> 
                 <td>$ <%= sub %> </td>
             </tr>

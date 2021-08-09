@@ -45,9 +45,7 @@ module.exports.updateCart = async(req,res) =>{
     for(let i = 0; i< Object.keys(cart).length; i++){
 
         if(cart[i]._id == selectedProduct.id){   
-            if(cart[i].qty > cart[i].stock ){
-                req.flash('error',`Only ${cart[i].stock} left!` );
-            }
+           
             switch(action){
                 case "add":
                     await selectedProduct.updateOne({ $inc: { qty: 1} });
@@ -73,11 +71,16 @@ module.exports.updateCart = async(req,res) =>{
                     console.log("update problem");
                     break;     
             }
+            if(cart[i].qty > cart[i].stock ){
+                req.flash('error',`Only ${cart[i].stock} left!` );
+            }else{
+                req.flash('success','Cart Updated!');
+            }
             break;
         }
     }
 
-    req.flash('success','Cart Updated!');
+    
     res.redirect('/cart');
 }
 
