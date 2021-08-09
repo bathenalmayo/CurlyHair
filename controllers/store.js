@@ -36,16 +36,6 @@ module.exports.addToCart = async(req,res)=>{
 
 }
 
-module.exports.renderCart = async(req,res) =>{
-    const cart = req.session.cart;
-    if(cart && cart.length == 0 ){
-        delete req.session.cart;
-        res.redirect('/cart');
-    }else{
-        res.render('cart',{cart});
-    }
-}
-
 module.exports.updateCart = async(req,res) =>{
     const { id } = req.params;
     const selectedProduct = await HairProduct.findById(id);
@@ -53,8 +43,10 @@ module.exports.updateCart = async(req,res) =>{
     const action = req.query.action;
     
     for(let i = 0; i< Object.keys(cart).length; i++){
-        if(cart[i]._id == selectedProduct.id){
-          
+
+        if(cart[i]._id == selectedProduct.id){   
+            console.log(selectedProduct);
+            console.log(cart[i]);      
             switch(action){
                 case "add":
                     await selectedProduct.updateOne({ $inc: { qty: 1} });
@@ -74,7 +66,8 @@ module.exports.updateCart = async(req,res) =>{
                      if(cart.length == 0 ){
                          await selectedProduct.updateOne({ $set: { qty: 1} });
                          delete req.session.cart;
-                     } break;
+                     }
+                      break;
                 default:
                     console.log("update problem");
                     break;     
@@ -86,6 +79,16 @@ module.exports.updateCart = async(req,res) =>{
     res.redirect('/cart',{cart});
 }
 
+
+module.exports.renderCart = async(req,res) =>{
+    const cart = req.session.cart;
+    if(cart && cart.length == 0 ){
+        delete req.session.cart;
+        res.redirect('/cart');
+    }else{
+        res.render('cart',{cart});
+    }
+}
 
 module.exports.clearCart =  async(req,res) =>{
     const products= await HairProduct.find({});
