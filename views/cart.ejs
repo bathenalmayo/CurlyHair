@@ -26,7 +26,7 @@
                 <td><%= product.name %> </td>
                 <td>$ <%= product.price %> </td>  
                 <td><%= product.qty %></td> 
-                <% if(product.qty > product.stock){ %>
+                <% if(product.qty >= product.stock){ %>
                         <!-- <span style="color:red" > only <%= product.stock %> left! </span> -->
                         <td>
                    
