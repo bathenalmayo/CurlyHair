@@ -27,9 +27,16 @@
                 <td>$ <%= product.price %> </td>  
                 <td data-bs-container="body" data-bs-toggle="popover"data-bs-trigger="focus" data-bs-placement="right" data-bs-content="Right popover">
                     <%= product.qty %></td> 
-                     <% if(product.qty > product.stock){ %>
-                        <span> only <%= product.stock %> left! </span>
-                <% } %> 
+                     <% if(product.qty >= product.stock){ %>
+                        <span > only <%= product.stock %> left! </span>
+                        <td>
+                   
+                            <a id="add" href="/update/<%= product._id %>?action=add" aria-disabled="true">+</a>&nbsp;     
+                            <a id="clear" href="/update/<%= product._id %>?action=clear">clear</a>&nbsp;
+                            <a id="remove" href="/update/<%= product._id %>?action=remove">-</a>&nbsp;
+                           
+                        </td>
+                <% } else{ %> 
                 <td>
                    
                     <a id="add" href="/update/<%= product._id %>?action=add">+</a>&nbsp;     
@@ -37,6 +44,7 @@
                     <a id="remove" href="/update/<%= product._id %>?action=remove">-</a>&nbsp;
                    
                 </td>
+                <% } %> 
                 <td>$ <%= sub %> </td>
             </tr>
             <% }); %>
