@@ -27,8 +27,8 @@
                 <td>$ <%= product.price %> </td>  
                 <td data-bs-container="body" data-bs-toggle="popover"data-bs-trigger="focus" data-bs-placement="right" data-bs-content="Right popover">
                     <%= product.qty %></td> 
-                     <% if(product.qty >= product.stock){ %>
-                        <span class="danger" > only <%= product.stock %> left! </span>
+                     <% if(product.qty > product.stock){ %>
+                        <span style="color:red" > only <%= product.stock %> left! </span>
                         <td>
                    
                             <a id="add" href="/update/<%= product._id %>?action=add" disabled>+</a>&nbsp;     
