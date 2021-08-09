@@ -76,7 +76,7 @@ module.exports.updateCart = async(req,res) =>{
         }
     }
     req.flash('success','Cart Updated!');
-    res.redirect('/cart',{cart});
+    res.redirect('/cart');
 }
 
 
