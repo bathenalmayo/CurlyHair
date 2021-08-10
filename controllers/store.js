@@ -41,11 +41,11 @@ module.exports.updateCart = async(req,res) =>{
     const selectedProduct = await HairProduct.findById(id);
     const cart = req.session.cart;
     const action = req.query.action;
-    
+    console.log(cart);
     for(let i = 0; i< Object.keys(cart).length; i++){
 
-        if(cart[i]._id == selectedProduct.id){   
-           
+        if(cart[i]._id == selectedProduct.id){ 
+            
             switch(action){
                 case "add":
                     await selectedProduct.updateOne({ $inc: { qty: 1} });
@@ -61,7 +61,7 @@ module.exports.updateCart = async(req,res) =>{
                     }
                      break;
                 case "clear":
-                     cart.splice(i,1);
+                     cart.splice(i,1);                     
                      if(cart.length == 0 ){
                          await selectedProduct.updateOne({ $set: { qty: 1} });
                          delete req.session.cart;
@@ -71,12 +71,13 @@ module.exports.updateCart = async(req,res) =>{
                     console.log("update problem");
                     break;     
             }
-            if(cart[i].qty > cart[i].stock ){
-                req.flash('error',`Only ${cart[i].stock} left!` );
+           
+            if(selectedProduct.qty === selectedProduct.stock ){
+                req.flash('error',`Only ${selectedProduct.stock} left!` );
             }else{
                 req.flash('success','Cart Updated!');
-            }
-            break;
+            }  
+            break; 
         }
     }
 
